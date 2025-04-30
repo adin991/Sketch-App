@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw</title>
+    <link rel="icon" href="img/ikona.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="main-tools">
+            <button class="olovka active" id="pencil-btn">
+                <img src="img/pencil.png" alt="Pencil" width="22px" height="22px">
+            </button>
+            <button class="gumica" id="eraser-btn">
+                <img src="img/eraser.png" alt="Eraser" width="22px" height="22px">
+            </button>
+            <button class="text" id="text-btn">
+                <img src="img/text.png" alt="Text" width="22px" height="22px">
+            </button>
+            <button class="undo" id="undo-btn">
+                <img src="img/undo.png" alt="Undo" width="22px" height="22px">
+            </button>
+        </div>
+    </div>
+    <div id="drawing-area">
+        <canvas id="drawing-canvas"></canvas>
+        <div id="text-input-container">
+            <textarea id="text-input" rows="1"></textarea>
+        </div>
+        
+        <div class="color-palette" id="color-palette">
+            <div class="color-option selected" data-color="#000000" style="background-color: #000000;"></div>
+            <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+            <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+            <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+            <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
+        </div>
+    </div>
+
+    <div class="bottom-toolbar">
+        <button id="export-btn" style="color: #0078d7;">Export Project</button>
+        <button id="import-btn" style="color: #0078d7;">Import Image</button>
+        <input type="file" id="file-input" accept=".jpg,.jpeg,.png">
+    </div>
+
+    <div id="export-success" class="export-popup">
+        <div class="popup-content">
+          <span class="close-btn">&times;</span>
+          <img src="img/correct.png" alt="Success" class="success-icon">
+          <h3>Successful Exported Image</h3>
+          <img id="exported-preview" src="" alt="Exported Image" class="preview-image">
+        </div>
+      </div>
+    
+    <button id="new-board-btn" class="new-board-btn">+</button>
+
+    <div class="eraser-size-control" id="eraser-size-control">
+        <div class="size-option" data-size="20">
+            <div class="size-preview" style="width: 10px; height: 10px;"></div>
+        </div>
+        <div class="size-option" data-size="40">
+            <div class="size-preview" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="size-option" data-size="60">
+            <div class="size-preview" style="width: 30px; height: 30px;"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
