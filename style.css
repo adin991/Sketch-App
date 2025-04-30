@@ -419,6 +419,10 @@ z-index: 100;  /* Da bude iznad ostalog sadržaja */
         gap: 8px;
         width: auto !important;
     }
+
+    .color-option {
+        height: 28px;
+    }
     
     .main-tools button img {
         width: 24px; /* Smanjene ikone */
