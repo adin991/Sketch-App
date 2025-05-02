@@ -82,16 +82,8 @@ body {
     height: calc(100vh - 60px);
     position: relative;
     overflow: hidden;
-}
-
-#drawing-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: crosshair;
     z-index: 3;
+    cursor: crosshair;
 }
 
 #text-input-container {
@@ -116,7 +108,7 @@ body {
     width: 100%;
     height: 100%;
     background: transparent;
-    resize: none;
+    resize: both;
     overflow: hidden;
     font-family: Arial, sans-serif;
     color: #000;
@@ -166,6 +158,12 @@ body {
     border: 2px dashed transparent;
     transition: border-color 0.2s;
     pointer-events: none;
+    touch-action: none; /* Onemogući browser default touch akcije */
+    user-select: none;
+}
+
+.imported-image img {
+    pointer-events: none; /* Spriječi event bubbling na sliku */
 }
 
 .imported-image.selected {
@@ -185,6 +183,7 @@ body {
     cursor: nwse-resize;
     z-index: 51;
     display: none;
+    touch-action: none;
 }
 
 .imported-image.selected .image-resize-handle {
@@ -376,6 +375,11 @@ color: #0078d7;
     background-color: #333;
 }
 
+/* Dodajte u vaš CSS fajl */
+#drawing-canvas.eraser-active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white" stroke="black" stroke-width="2"/></svg>') 12 12, auto;
+}
+
 
 @media only screen and (max-width: 768px) {
     .menu {
@@ -418,10 +422,6 @@ z-index: 100;  /* Da bude iznad ostalog sadržaja */
         padding: 10px !important;
         gap: 8px;
         width: auto !important;
-    }
-
-    .color-option {
-        height: 26px;
     }
     
     .main-tools button img {
