@@ -431,7 +431,7 @@ z-index: 100;  /* Da bude iznad ostalog sadržaja */
 
     .color-option {
         width: 24px;
-        height: 24px;
+        height: 20px;
     }
 
     #drawing-area {
