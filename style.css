@@ -428,12 +428,7 @@ z-index: 100;  /* Da bude iznad ostalog sadržaja */
         width: 24px; /* Smanjene ikone */
         height: 24px;
     }
-
-    .color-option {
-        width: 24px;
-        height: 20px;
-    }
-
+    
     #drawing-area {
         margin-left: 0 !important;
         margin-top: 70px !important; /* Da ne bude preklopljeno sa gornjim toolbarom */
