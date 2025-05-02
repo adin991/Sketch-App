@@ -429,6 +429,11 @@ z-index: 100;  /* Da bude iznad ostalog sadržaja */
         height: 24px;
     }
 
+    .color-option {
+        width: 24px;
+        height: 24px;
+    }
+
     #drawing-area {
         margin-left: 0 !important;
         margin-top: 70px !important; /* Da ne bude preklopljeno sa gornjim toolbarom */
