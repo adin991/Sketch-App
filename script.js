@@ -31,10 +31,10 @@ let dragStartX, dragStartY;
 let imageStartX, imageStartY, imageStartWidth, imageStartHeight;
 let currentEraserSize = 20;
 
-// Postavi početnu veličinu gumice
+// Postavljanje početne veličine gumice
 sizeOptions[0].classList.add('active');
 
-// Funkcije za kontrolu veličine gumice
+// Funkcije za kontrolu veličine gumice, prikazuje i sklanja je
 function toggleEraserSizeControl() {
     if (currentTool === 'eraser') {
         eraserSizeControl.classList.add('show');
@@ -43,6 +43,7 @@ function toggleEraserSizeControl() {
     }
 }
 
+// Azuzrira sliku prema ciljanom stanju
 function updateImages(targetImages) {
     const currentImages = Array.from(document.querySelectorAll('.imported-image'));
     
@@ -76,6 +77,7 @@ function updateImages(targetImages) {
     });
 }
 
+// kreira HTML elemnt za prikaz uvezene slike
 function createImageContainer(img, imgData) {
     const imgContainer = document.createElement('div');
     imgContainer.className = 'imported-image';
@@ -100,15 +102,15 @@ function createImageContainer(img, imgData) {
     return imgContainer;
 }
 
+// resetira kursor
 function resetCursor() {
     const existing = document.getElementById("custom-cursor-style");
     if (existing) existing.remove();
     
-    // Uklonite klasu za aktivnu gumicu
     canvas.classList.remove('eraser-active');
 }
 
-// Event listeneri za veličinu gumice
+// Event listeneri za odabir veličine gumice
 sizeOptions.forEach(option => {
     option.addEventListener('click', function() {
         sizeOptions.forEach(opt => opt.classList.remove('active'));
@@ -118,8 +120,10 @@ sizeOptions.forEach(option => {
     });
 });
 
+
+// Azurira kursor za gumicu prema odabranoj velicini
 function updateEraserCursor() {
-    // Prvo uklonite postojeći custom kursor
+    // Prvo uklonimo postojeći custom kursor
     resetCursor();
     
     const padding = 4;
@@ -148,6 +152,7 @@ function updateEraserCursor() {
     canvas.classList.add('eraser-active');
 }
 
+// Dohvata poziciju na canvasu
 function getTouchPos(canvas, touchEvent) {
     const rect = canvas.getBoundingClientRect();
     return {
@@ -156,6 +161,7 @@ function getTouchPos(canvas, touchEvent) {
     };
 }
 
+// Postavlja odabranu boju za crtanje/tipkanje
 function selectColor(e) {
     colorOptions.forEach(option => {
         option.classList.remove('selected');
@@ -165,6 +171,7 @@ function selectColor(e) {
     currentColor = e.target.dataset.color;
 }
 
+// Funkcionalnsot za novu plocu
 const newBoardBtn = document.getElementById('new-board-btn');
 
 newBoardBtn.addEventListener('click', () => {
@@ -175,6 +182,7 @@ newBoardBtn.addEventListener('click', () => {
     }
 });
 
+// Podesava velicinu canvasa prema velicini drawing area
 function resizeCanvas() {
     const rect = drawingArea.getBoundingClientRect();
     canvas.width = rect.width;
@@ -189,6 +197,7 @@ function resizeCanvas() {
     saveState();
 }
 
+// Prilagodava canvas
 function handleResize() {
     // Sačuvaj trenutni sadržaj canvas-a u privremeni canvas
     const tempCanvas = document.createElement('canvas');
@@ -240,12 +249,12 @@ function handleResize() {
 
 window.addEventListener('beforeunload', function() {
     // Ovo će osigurati da se stranica potpuno resetuje
-    // Ako želite da se sadržaj sačuva između reloadova, morate koristiti localStorage
 });
 
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
+// Pokrece proces crtanja
 function startDrawing(e) {
     if (e.touches) {
         e.preventDefault();
@@ -295,6 +304,7 @@ function startDrawing(e) {
     }
 }
 
+// Zaustavlja crtanje
 function stopDrawing() {
     if (isDrawing) {
         saveState();
@@ -302,6 +312,7 @@ function stopDrawing() {
     isDrawing = false;
 }
 
+// Crtanje linija po canvasu (Mouse/Touch event)
 function draw(e) {
     if (!isDrawing || currentTool === 'text') return;
 
@@ -338,6 +349,7 @@ function draw(e) {
     ctx.moveTo(currentX, currentY);
 }
 
+// Dodavanje tekst-a
 function addText() {
     const text = textInput.value;
     if (text) {
